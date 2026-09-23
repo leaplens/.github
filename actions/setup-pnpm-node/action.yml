@@ -1,0 +1,40 @@
+name: Setup pnpm + Node.js
+description: pnpm と Node.js をセットアップし、依存関係をインストールする
+
+inputs:
+  node-version:
+    description: Node.js のバージョン
+    default: "20"
+  pnpm-version:
+    description: pnpm のバージョン。空なら package.json の packageManager に従う
+    default: ""
+  working-directory:
+    description: package.json / pnpm-lock.yaml のあるディレクトリ
+    default: .
+  install:
+    description: pnpm install --frozen-lockfile を実行するか
+    default: "true"
+
+runs:
+  using: composite
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm-version }}
+        package_json_file: ${{ inputs.working-directory }}/package.json
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: pnpm
+        cache-dependency-path: ${{ inputs.working-directory }}/pnpm-lock.yaml
+
+    # GitHub Packages (@leaplens スコープ) を使う場合は、呼び出し側の job で
+    # env.NODE_AUTH_TOKEN と permissions.packages: read を設定すること
+    - name: Install dependencies
+      if: inputs.install == 'true'
+      shell: bash
+      working-directory: ${{ inputs.working-directory }}
+      run: pnpm install --frozen-lockfile

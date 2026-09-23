@@ -1,0 +1,44 @@
+name: バグ報告
+description: 動作不良・期待と異なる挙動の報告
+labels: [bug]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 概要
+      description: 何が起きているかを 1-2 行で
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: 再現手順
+      description: 番号付きで具体的に
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期待する挙動
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 実際の挙動
+      description: スクリーンショット/ログがあれば貼付
+    validations:
+      required: true
+
+  - type: input
+    id: env
+    attributes:
+      label: 環境
+      placeholder: macOS 14.x / Chrome 130 / pnpm 10.x など

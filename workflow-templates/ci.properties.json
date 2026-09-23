@@ -1,0 +1,7 @@
+{
+  "name": "leaplens CI (pnpm + Node.js)",
+  "description": "leaplens 標準の CI。pnpm + Node.js で lint / typecheck / test / build を実行する",
+  "iconName": "octicon package",
+  "categories": ["JavaScript", "TypeScript"],
+  "filePatterns": ["pnpm-lock.yaml$"]
+}
