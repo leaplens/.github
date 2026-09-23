@@ -1,0 +1,7 @@
+# org 共通ラベル定義 (name<TAB>color<TAB>description)。scripts/sync-labels.sh で全リポジトリに反映する
+bug	d73a4a	不具合
+enhancement	a2eeef	新機能・改善
+documentation	0075ca	ドキュメントの追加・修正
+breaking	b60205	破壊的変更 (利用側に影響あり)
+dependencies	0366d6	依存関係の更新 (Dependabot)
+github-actions	000000	GitHub Actions の更新 (Dependabot)
